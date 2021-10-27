@@ -181,7 +181,7 @@ const ContactUs = () => {
       postal: "",
       request: "",
       notes: "",
-      bid_rate,
+      bid_rate: "",
     }
   )
   const {
