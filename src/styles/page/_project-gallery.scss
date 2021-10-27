@@ -1,0 +1,77 @@
+.project-gallery {
+  background-image: url("../assets/project-gallery.png");
+  background-size: cover;
+  background-position: center;
+  @include sectionGap();
+}
+
+.gallery-section {
+  margin: 32px 0 80px;
+  .gallery__categories {
+    margin-bottom: 40px;
+    .category-select {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+      color: $gray;
+      background-color: white;
+      border: 2px solid #d0d0d0;
+      border-radius: 2px;
+      padding: 8px 16px;
+      margin: 0 8px 8px 0;
+      &.active {
+        background-color: $blue;
+        border: 2px solid $blue;
+        color: white;
+      }
+    }
+    @include mq("phone", max) {
+      display: none;
+    }
+    &--select {
+      display: none;
+      .css-1s2u09g-control {
+        border: 2px solid $blue !important;
+        box-shadow: none !important;
+      }
+      .css-1pahdxg-control {
+        border: 2px solid $blue !important;
+        box-shadow: none !important;
+      }
+      .css-qc6sy-singleValue {
+        color: $blue;
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 24px;
+      }
+      .css-14el2xx-placeholder {
+        color: $blue;
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 24px;
+      }
+      .css-tj5bde-Svg {
+        color: $blue;
+      }
+      .css-1okebmr-indicatorSeparator {
+        background: $blue;
+      }
+      @include mq("phone", max) {
+        display: block;
+      }
+    }
+  }
+  .gallery__container {
+    .react-photo-gallery--gallery {
+      img {
+        margin: 0 !important;
+        padding: 8px !important;
+        transition: all 0.25s ease-in-out;
+      }
+    }
+  }
+}

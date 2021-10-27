@@ -1,0 +1,86 @@
+.our-team {
+  background-image: url("../assets/our-team.png");
+  background-size: cover;
+  background-position: center;
+  @include sectionGap();
+}
+
+.team-members {
+  margin-top: 40px;
+  .intro {
+    margin-top: 24px;
+    @include mq("phone", max) {
+      margin-top: 16px;
+    }
+  }
+  .profile {
+    margin: 40px 0 80px;
+    @include mq("phone", max) {
+      margin: 16px 0 40px;
+    }
+    .col-6,
+    .col-sm-4 {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    &-item {
+      margin-bottom: 24px;
+    }
+    &-link {
+      h5,
+      p {
+        color: black;
+        text-align: center;
+      }
+      h5 {
+        @include mq("phone", max) {
+          margin-bottom: 0;
+        }
+      }
+      img {
+        width: 100%;
+        margin-bottom: 16px;
+        @include mq("phone", max) {
+          margin-bottom: 8px;
+        }
+      }
+      &:hover {
+        h5,
+        p {
+          color: $gold;
+        }
+      }
+    }
+  }
+}
+
+.team-profile {
+  margin-bottom: 60px;
+  .headline {
+    padding: 40px 0;
+    @include mq("phone", max) {
+      padding-bottom: 16px;
+    }
+  }
+  .profile-about {
+    @include mq("phone", max) {
+      margin-top: 16px;
+    }
+  }
+  .profile-social {
+    display: flex;
+    margin-top: 36px;
+    @include mq("phone", max) {
+      margin-top: 28px;
+    }
+    li {
+      margin-right: 32px;
+      @include mq("phone", max) {
+        margin: 0;
+      }
+    }
+    @include mq("phone", max) {
+      justify-content: space-around;
+    }
+  }
+}

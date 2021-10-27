@@ -1,0 +1,6 @@
+.history-mission {
+  background-size: cover;
+  background-position: center;
+  @include sectionGap();
+  background-image: url("../assets/history.png");
+}

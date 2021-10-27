@@ -1,0 +1,54 @@
+.footer-navbar {
+  padding: 40px 0 26px;
+  background-color: $brown;
+  .col-lg-4 {
+    @include mq("laptop", max) {
+      margin-bottom: 32px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .footer-link {
+    font-family: "Source Sans Pro";
+    line-height: 22px;
+    font-weight: 400;
+    font-size: 14px;
+    a {
+      color: white;
+      &:hover {
+        color: $gold;
+      }
+    }
+  }
+  .form-control {
+    padding: 9px 16px;
+    border-radius: 4px;
+    &::placeholder {
+      font-size: 16px;
+      line-height: 22px;
+      color: black;
+    }
+  }
+  .socials {
+    @include mq("phone", max) {
+      padding-top: 8px;
+      justify-content: space-around;
+      li:first-child {
+        .nav-link {
+          padding-left: 16px;
+        }
+      }
+    }
+  }
+}
+.bottombar {
+  padding: 9px 0;
+  background-color: black;
+  color: white;
+  p {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: normal;
+  }
+}
