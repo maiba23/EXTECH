@@ -4,6 +4,7 @@ import Slider from "react-slick"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { heros } from "../../utils/staticData"
+import { ArrowRight } from "../../utils/imgLoader"
 
 const CustomSlide = ({ data }) => {
   return (
@@ -21,9 +22,11 @@ const CustomSlide = ({ data }) => {
             <span className="typo-txt">{data.content}</span>
           </h3>
           <Link className="btn-goto" to={data.to}>
-            {data.btnName}
-            &nbsp;&nbsp;
-            <FontAwesomeIcon icon={faArrowRight} />
+            <span>
+              {data.btnName}
+              &nbsp;&nbsp;
+              <img src={ArrowRight} alt="arrow right" className="arrow-right" />
+            </span>
           </Link>
         </div>
       </div>

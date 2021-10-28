@@ -62,15 +62,25 @@
   &-goto {
     border-radius: 2px;
     background-color: #fff;
-    color: black;
     text-transform: uppercase;
     padding: 6px 8px;
-    letter-spacing: 2px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 20px;
+    display: inline-block;
+    span {
+      color: black;
+      letter-spacing: 2px;
+      font-family: "Rubik";
+      font-weight: 500;
+      font-size: 12px !important;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+    }
     @include mq("laptop", max) {
       font-size: 10px;
+    }
+    .arrow-right {
+      width: 13px;
+      height: 8px;
     }
   }
 }
