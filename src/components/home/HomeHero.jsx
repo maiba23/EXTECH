@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { heros } from "../../utils/staticData"
 import { ArrowRight } from "../../utils/imgLoader"
+import { StaticImage } from "gatsby-plugin-image"
 
 const CustomSlide = ({ data }) => {
   return (
     <div className="hero-slide position-relative">
-      <img src={data.imgSrc} alt="hero slide" className="hero-img" />
+      {/* <img src={data.imgSrc} alt="hero slide" className="hero-img" /> */}
+      <StaticImage src="../../assets/hero.jpg" alt="hero" />
       <div className="container">
         <div className="fixed-content">
           <h1 className="hero">
