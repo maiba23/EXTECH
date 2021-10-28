@@ -1,12 +1,9 @@
 .casestudy-hero {
-  background-image: url("../assets/case-study.png");
+  background-image: url("../assets/case-study.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   @include sectionGap();
-  @include mq("phone", max) {
-    background-image: url("../assets/case-study-mob.png");
-  }
 }
 
 .section-map {
@@ -127,7 +124,7 @@
     margin: 40px 0;
     padding: 40px 0;
   }
-  background-image: url("../assets/gallery-back.png");
+  background-image: url("../assets/gallery-back.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

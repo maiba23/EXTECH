@@ -1,18 +1,22 @@
 .benefit-daylight,
 .polycarbonate,
-.aluminum {
+.aluminum,
+.leed-certified {
   background-size: cover;
   background-position: center;
   @include sectionGap();
 }
 .benefit-daylight {
-  background-image: url("../assets/benefit-daylight.png");
+  background-image: url("../assets/benefit-daylight.jpg");
 }
 .polycarbonate {
-  background-image: url("../assets/polycarbonate.png");
+  background-image: url("../assets/polycarbonate.jpg");
 }
 .aluminum {
-  background-image: url("../assets/aluminum.png");
+  background-image: url("../assets/aluminum.jpg");
+}
+.leed-certified {
+  background-image: url("../assets/leed.jpg");
 }
 
 .daylight-projects {

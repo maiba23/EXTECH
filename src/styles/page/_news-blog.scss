@@ -1,9 +1,9 @@
 .news-hero {
-  background-image: url("../assets/newsblog-back.png");
+  background-image: url("../assets/newsblog-back.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   @include sectionGap();
-  @include mq("phone", max) {
-    background-image: url("../assets/newsblog-mob.png");
-  }
 }
 
 .section-blogs {

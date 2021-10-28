@@ -1,6 +1,6 @@
 import React from "react"
 import NavSystemLink from "../../components/shared/NavSystemLink"
-import { CaseHover } from "../../utils/imgLoader"
+import { ServiceHover } from "../../utils/imgLoader"
 import {
   translucent_walls,
   skylights,
@@ -44,7 +44,7 @@ const NavSystemTab = () => {
             </div>
           </div>
           <div className="hover-img">
-            <img src={CaseHover} alt="hover" />
+            <img src={ServiceHover} alt="hover" />
           </div>
         </div>
       </div>

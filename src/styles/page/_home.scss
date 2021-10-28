@@ -303,7 +303,7 @@
   padding: 120px 0;
   position: relative;
   &.other {
-    background-image: url("../assets/cta-back.png");
+    background-image: url("../assets/cta-back.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     @include mq("phone", max) {
