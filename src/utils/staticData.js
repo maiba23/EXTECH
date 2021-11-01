@@ -32,6 +32,8 @@ import {
   Resistance,
   Testing,
   USA,
+  CaseHover,
+  ServiceHover,
 } from "./imgLoader"
 import {
   faFacebook,
@@ -234,11 +236,27 @@ export const menus = [
   { name: "Resources", to: "/resources" },
 ]
 export const services = [
-  { name: "Custom Design", to: "/services/custom-wall-design" },
-  { name: "Daylighting Analysis", to: "/services/daylighting-simulation" },
-  { name: "Engineering", to: "/services/industrial-window-design" },
-  { name: "Fabrication", to: "/services/window-fabrication" },
-  { name: "Installation", to: "/services/commercial-window-installation" },
+  {
+    name: "Custom Design",
+    to: "/services/custom-wall-design",
+    hover: ServiceHover,
+  },
+  {
+    name: "Daylighting Analysis",
+    to: "/services/daylighting-simulation",
+    hover: CaseHover,
+  },
+  {
+    name: "Engineering",
+    to: "/services/industrial-window-design",
+    hover: ServiceHover,
+  },
+  { name: "Fabrication", to: "/services/window-fabrication", hover: CaseHover },
+  {
+    name: "Installation",
+    to: "/services/commercial-window-installation",
+    hover: ServiceHover,
+  },
 ]
 export const company = [
   { name: "About", to: "/about-us" },
@@ -247,12 +265,12 @@ export const company = [
   { name: "Gallery", to: "/project-gallery" },
 ]
 export const industry = [
-  { name: "Education", to: "/" },
-  { name: "Aviation", to: "/" },
-  { name: "Transit", to: "/" },
-  { name: "Industrial", to: "/" },
-  { name: "Military", to: "/" },
-  { name: "Recreation", to: "/" },
+  { name: "Education", to: "/", hover: ServiceHover },
+  { name: "Aviation", to: "/", hover: CaseHover },
+  { name: "Transit", to: "/", hover: ServiceHover },
+  { name: "Industrial", to: "/", hover: CaseHover },
+  { name: "Military", to: "/", hover: ServiceHover },
+  { name: "Recreation", to: "/", hover: CaseHover },
 ]
 export const resources = [
   { name: "Product Downloads", to: "/" },
@@ -266,6 +284,7 @@ export const cases = [
     system: "SKYSHADE 2500®",
     desc: "Pittsburgh’s new transit station, located at 5th Avenue and Atwood Street, features a glass canopy and custom aluminum framing system engineered, fabricated, and installed by EXTECH/Exterior Technologies, Inc. (EXTECH).",
     to: "/",
+    hover: CaseHover,
   },
   {
     imgSrc: Case2,
@@ -273,6 +292,7 @@ export const cases = [
     system: "LIGHTWALL 3100LS",
     desc: "German steel giant ThyssenKrupp needed to cut costs in a big way. Having announced they’d be establishing a United States presence in Calvert, Alabama and bringing 2,700 jobs to the region, they needed to build a 150-acre steel mill with a roof more than 15 times the size of the Superdome's lid.",
     to: "/",
+    hover: ServiceHover,
   },
   {
     imgSrc: Case3,
@@ -280,6 +300,7 @@ export const cases = [
     system: "LIGHTWALL 3100LS",
     desc: "Stantec Architecture was hired to design a series of office buildings for Ivanhoe Cambridge CDP – three towers located in the heart of Burnaby, British Columbia’s metro center. The towers would be comprised of over 616,000 square feet",
     to: "/",
+    hover: CaseHover,
   },
 ]
 

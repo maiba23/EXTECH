@@ -71,6 +71,7 @@ import blogPost from "../assets/blog-detail.jpg"
 import avatar from "../assets/avatar.png"
 
 import serviceHover from "../assets/service-hover.jpg"
+import caseHover from "../assets/case-hover.jpg"
 
 import sample1 from "../assets/sample1.jpg"
 import sample2 from "../assets/sample2.jpg"
@@ -192,6 +193,7 @@ export const BlogPost = blogPost
 export const Avatar = avatar
 
 export const ServiceHover = serviceHover
+export const CaseHover = caseHover
 
 export const Sample1 = sample1
 export const Sample2 = sample2

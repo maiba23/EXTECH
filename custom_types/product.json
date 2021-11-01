@@ -1,0 +1,52 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
+      }
+    },
+    "type": {
+      "type": "Select",
+      "config": {
+        "options": [
+          "Translucent Walls",
+          "Canopies",
+          "Skylights",
+          "Specialty Exteriors",
+          "Exclusive Systems",
+          "Windows",
+          "Interiors"
+        ],
+        "default_value": "Translucent Walls",
+        "label": "Type"
+      }
+    },
+    "img_src": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Img Src"
+      }
+    },
+    "header": {
+      "type": "Text",
+      "config": {
+        "label": "Header"
+      }
+    },
+    "sub_header": {
+      "type": "Text",
+      "config": {
+        "label": "Sub Header"
+      }
+    },
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "Description"
+      }
+    }
+  }
+}

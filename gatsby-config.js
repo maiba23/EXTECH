@@ -1,3 +1,5 @@
+const prismicConfig = require("./prismic-configuration")
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -7,6 +9,23 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "extech-website",
+        schemas: {
+          product: require("./custom_types/product.json"),
+        },
+        linkResolver: require("./src/utils/linkResolver").linkResolver,
+        lang: "*",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-prismic-previews",
+      options: {
+        repositoryName: prismicConfig.prismicRepo,
+      },
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-image`,
     {
