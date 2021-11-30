@@ -2,31 +2,12 @@ const prismicConfig = require("./prismic-configuration")
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `EXTECH, Inc.`,
+    description: `Award-winning manufacturer of daylighting solutions including skylights, canopies, windows, translucent walls, and custom façades.`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: "gatsby-source-prismic",
-      options: {
-        repositoryName: "extech-website",
-        schemas: {
-          product: require("./custom_types/product.json"),
-        },
-        linkResolver: require("./src/utils/linkResolver").linkResolver,
-        lang: "*",
-      },
-    },
-    {
-      resolve: "gatsby-plugin-prismic-previews",
-      options: {
-        repositoryName: prismicConfig.prismicRepo,
-      },
-    },
-    `gatsby-plugin-sass`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -36,24 +17,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        defaults: {
-          formats: [`auto`, `webp`],
-          placeholder: `none`,
-          quality: 100,
-          breakpoints: [480, 750, 1080, 1366, 1920],
-          backgroundColor: `transparent`,
-          tracedSVGOptions: {},
-          blurredOptions: {},
-          jpgOptions: {},
-          pngOptions: {},
-          webpOptions: {},
-          avifOptions: {},
-        },
-      },
-    },
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -65,27 +29,48 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`,
       },
     },
+    `gatsby-plugin-sass`,
     {
-      resolve: `gatsby-plugin-google-fonts-v2`,
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "extech-website",
+        schemas: {
+          product: require("./custom_types/product.json"),
+          product_cta: require("./custom_types/product_cta.json"),
+          product_tech_info: require("./custom_types/product_tech_info.json"),
+          case_study: require("./custom_types/case_study.json"),
+          blog_post: require("./custom_types/blog_post.json"),
+          blog_category: require("./custom_types/blog_category.json"),
+          industries: require("./custom_types/industries.json"),
+          services: require("./custom_types/services.json"),
+          our_team: require("./custom_types/our_team.json"),
+          technical: require("./custom_types/technical.json"),
+          history_mission: require("./custom_types/history_mission.json"),
+          product_type: require("./custom_types/product_type.json"),
+          footer_cta: require("./custom_types/footer_cta.json"),
+          download_cta: require("./custom_types/download_cta.json"),
+          homepage: require("./custom_types/homepage.json"),
+        },
+        linkResolver: require("./src/utils/linkResolver").linkResolver,
+        lang: "*",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-prismic-previews",
+      options: {
+        repositoryName: prismicConfig.prismicRepo,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          {
-            family: "Source Sans Pro",
-            weights: ["300", "400", "500", "700"],
-          },
-          {
-            family: "Oswald",
-            weights: ["400", "500", "700"],
-          },
-          {
-            family: "Montserrat",
-            weights: ["300", "400", "500", "700"],
-          },
-          {
-            family: "Rubik",
-            weights: ["500"],
-          },
+          `Source Sans Pro\:300,400,500,700`,
+          `Oswald\:400,500,700`,
+          `Montserrat\"300,400,500,700`,
+          `Rubik\:500`,
         ],
+        display: "swap",
       },
     },
   ],

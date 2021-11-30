@@ -1,11 +1,3 @@
-.news-hero {
-  background-image: url("../assets/newsblog-back.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  @include sectionGap();
-}
-
 .section-blogs {
   margin-top: 16px;
   margin-bottom: 40px;
@@ -35,6 +27,12 @@
         }
       }
       .post-content {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      p {
         color: black;
       }
       footer {
@@ -51,9 +49,11 @@
       @include mq("phone", max) {
         margin-bottom: 32px;
       }
-      a {
-        font-family: "Source Sans Pro" !important;
-        color: black;
+      &-link {
+        a {
+          font-family: "Source Sans Pro" !important;
+          color: black;
+        }
       }
       &-article {
         margin-bottom: 40px;
@@ -69,6 +69,7 @@
           a {
             color: black;
             font-size: 14px;
+            font-weight: bold;
             &:hover {
               color: $blue;
             }

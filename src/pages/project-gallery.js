@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Link } from "gatsby"
 import Layout from "../layout"
-import CTASection from "../components/shared/CTASection"
+import FooterCTA from "../components/shared/FooterCTA"
 import SliderComponent from "../components/shared/SliderComponent"
 import Gallery from "react-photo-gallery"
 import Select from "react-select"
@@ -14,7 +14,6 @@ import {
   Gallery5,
   Gallery6,
 } from "../utils/imgLoader"
-import { ctaData2 } from "../utils/staticData"
 
 const categories = [
   {
@@ -126,7 +125,7 @@ const ProjectGallery = () => {
   }, [filter])
   return (
     <Layout type="secondary">
-      <section className="hero-section project-gallery">
+      <section className="hero-section">
         <div className="container">
           <h1 className="hero typo-txt">Our Projects Gallery</h1>
         </div>
@@ -220,7 +219,7 @@ const ProjectGallery = () => {
           </div>
         </div>
       </section>
-      <CTASection data={ctaData2} />
+      <FooterCTA />
       <SliderComponent type="project" />
       <SliderComponent type="blog" />
     </Layout>

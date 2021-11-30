@@ -83,6 +83,19 @@
       height: 8px;
     }
   }
+  &-submit {
+    padding: 8px 23px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 24px;
+    color: $gold;
+    border: 2px solid $gold;
+    border-radius: 0px 4px 4px 0px;
+    &:hover {
+      background-color: $gold;
+      color: white;
+    }
+  }
 }
 
 .show-more {

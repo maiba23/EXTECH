@@ -190,9 +190,6 @@
     }
   }
 }
-.section-professionals {
-  background-image: url("../assets/pro_service.jpg");
-}
 
 .section-history {
   margin: 50px 0;
@@ -282,7 +279,8 @@
       }
     }
   }
-  .benefit-slide {
+  .benefit-slide,
+  .guide-slide {
     height: 540px;
     @include mq("tablet", max) {
       height: 548px;
@@ -301,25 +299,35 @@
     }
   }
 }
-
+.guide-slide {
+  background-image: url("../assets/guide-back.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  h2 {
+    font-size: 36px;
+    line-height: 43px;
+  }
+  .pre-wrap {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 24px 0 65px;
+    @include mq("phone", max) {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
 .section-cta {
   padding: 120px 0;
   position: relative;
-  &.other {
-    background-image: url("../assets/cta-back.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    @include mq("phone", max) {
-      .btn-group {
-        display: block;
-        a {
-          display: block;
-          width: 100%;
-          margin-bottom: 8px;
-          text-align: center;
-        }
-      }
-    }
+  background-image: url("../assets/cta-back.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  &.home {
+    background-image: none;
+    background-color: white;
   }
   @include mq("tablet", max) {
     padding: 56px 0;

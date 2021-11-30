@@ -1,20 +1,57 @@
 import React, { useState } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SocialLinks from "./SocialLinks"
 import { Logo, LogoSec } from "../utils/imgLoader"
 import NavSystemTab from "./common/NavSystemTab"
 import NavDropdownTab from "./common/NavDropdownTab"
-import {
-  cases,
-  services,
-  company,
-  socials,
-  industry,
-  resources,
-} from "../utils/staticData"
+import { company, socials, resources } from "../utils/staticData"
 
 const Header = ({ type }) => {
+  const data = useStaticQuery(graphql`
+    query HeaderQuery {
+      allPrismicCaseStudy {
+        nodes {
+          data {
+            name
+            header_image {
+              url
+              gatsbyImageData
+            }
+          }
+          uid
+        }
+      }
+      allPrismicIndustries {
+        nodes {
+          data {
+            name
+            header_image {
+              url
+              gatsbyImageData
+            }
+          }
+          uid
+        }
+      }
+      allPrismicServices {
+        nodes {
+          data {
+            name
+            header_image {
+              url
+              gatsbyImageData
+            }
+          }
+          uid
+        }
+      }
+    }
+  `)
+  const allCases = data?.allPrismicCaseStudy.nodes
+  const allIndustries = data?.allPrismicIndustries.nodes
+  const allServices = data?.allPrismicServices.nodes
   const [hambugerActive, setHambugerActiveState] = useState(false)
   const [navMenuShow, setNavMenuShow] = useState({})
 
@@ -62,8 +99,8 @@ const Header = ({ type }) => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   {resources.map((item, idx) => (
                     <li key={idx}>
-                      <Link className="dropdown-item" to={item.to}>
-                        {item.name}
+                      <Link className="dropdown-item" to={`/${item.uid}`}>
+                        {item.data.name}
                       </Link>
                     </li>
                   ))}
@@ -83,8 +120,8 @@ const Header = ({ type }) => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   {company.map((item, idx) => (
                     <li key={idx}>
-                      <Link className="dropdown-item" to={item.to}>
-                        {item.name}
+                      <Link className="dropdown-item" to={`/${item.uid}`}>
+                        {item.data.name}
                       </Link>
                     </li>
                   ))}
@@ -152,7 +189,7 @@ const Header = ({ type }) => {
                 <a className="nav-link" href="#Services">
                   Services
                 </a>
-                <NavDropdownTab data={services} type="service" />
+                <NavDropdownTab data={allServices} type="service" />
               </li>
               <li
                 className={`nav-item dropdown ${
@@ -164,7 +201,7 @@ const Header = ({ type }) => {
                 <a className="nav-link" href="#industries">
                   Industries
                 </a>
-                <NavDropdownTab data={industry} type="industry" />
+                <NavDropdownTab data={allIndustries} type="industry" />
               </li>
               <li
                 className={`nav-item dropdown ${
@@ -176,7 +213,7 @@ const Header = ({ type }) => {
                 <a className="nav-link" href="#Case">
                   Case Studies
                 </a>
-                <NavDropdownTab data={cases} type="case" />
+                <NavDropdownTab data={allCases} type="case" />
               </li>
               <li className="nav-item">
                 <Link

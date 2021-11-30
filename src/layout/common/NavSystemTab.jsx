@@ -1,17 +1,52 @@
 import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import NavSystemLink from "../../components/shared/NavSystemLink"
 import { ServiceHover } from "../../utils/imgLoader"
-import {
-  translucent_walls,
-  skylights,
-  canopies,
-  windows,
-  interiors,
-  specialty_exteriors,
-  exclusive_systems,
-} from "../../utils/staticData"
 
 const NavSystemTab = () => {
+  const data = useStaticQuery(graphql`
+    query NavSystemQuery {
+      allPrismicProduct {
+        nodes {
+          uid
+          data {
+            name
+            type {
+              id
+            }
+            prod_img {
+              url
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const systems = data.allPrismicProduct.nodes
+
+  const translucent_walls = systems.filter(
+    item => item.data.type.id === "YZ7YrxMAAB4AnC-b"
+  )
+  const canopies = systems.filter(
+    item => item.data.type.id === "YZ7Y3hMAACAAnDB8"
+  )
+  const skylights = systems.filter(
+    item => item.data.type.id === "YZ7Y-xMAAB8AnDEK"
+  )
+  const specialty_exteriors = systems.filter(
+    item => item.data.type.id === "YZ7ZjRMAACIAnDOl"
+  )
+  const exclusive_systems = systems.filter(
+    item => item.data.type.id === "YZ7abBMAACAAnDe4"
+  )
+  const windows = systems.filter(
+    item => item.data.type.id === "YZ7awxMAAB4AnDlK"
+  )
+  const interiors = systems.filter(
+    item => item.data.type.id === "YZ7a3RMAAB4AnDnN"
+  )
   return (
     <div className="dropdown-content">
       <div className="container">

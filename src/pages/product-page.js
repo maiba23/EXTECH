@@ -1,25 +1,25 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { graphql } from "gatsby"
 import { Link } from "gatsby"
 import ImageGallery from "react-image-gallery"
 import Layout from "../layout"
-import {
-  ChevronDown,
-  ChevronUp,
-  Play,
-  ProdImg,
-  ProdModel,
-} from "../utils/imgLoader"
-import { icons, images, questions } from "../utils/staticData"
+import { ChevronDown, ChevronUp, Play } from "../utils/imgLoader"
 import SliderComponent from "../components/shared/SliderComponent"
-import CTASection from "../components/shared/CTASection"
-import { ctaData2, ctaData4 } from "../utils/staticData"
+import FooterCTA from "../components/shared/FooterCTA"
 import TechTab from "../components/product-page/TechTab"
 import TechSelect from "../components/product-page/TechSelect"
 import FAQSection from "../components/product-page/FAQSection"
+import Seo from "../components/shared/seo"
 
 const ArrowUp = ({ onClick, disabled }) => {
   return (
-    <div className="image-gallery-up-nav" disabled={disabled} onClick={onClick}>
+    <div
+      className="image-gallery-up-nav"
+      disabled={disabled}
+      onClick={onClick}
+      onKeyDown={onClick}
+      role="presentation"
+    >
       <img src={ChevronUp} alt="arrow up" />
     </div>
   )
@@ -30,6 +30,8 @@ const ArrowDown = ({ onClick, disabled }) => {
       className="image-gallery-down-nav"
       disabled={disabled}
       onClick={onClick}
+      onKeyDown={onClick}
+      role="presentation"
     >
       <img src={ChevronDown} alt="arrow down" />
     </div>
@@ -37,14 +39,50 @@ const ArrowDown = ({ onClick, disabled }) => {
 }
 const FeatureItem = ({ data }) => (
   <div className="feature-item">
-    <img src={data.icon} alt="feature" className="feature-img" />
-    <p className="feature-text">{data.text}</p>
+    <img src={data.icon.url} alt="feature" className="feature-img" />
+    <p className="feature-text">{data.name}</p>
   </div>
 )
 
-const ProductPage = () => {
+const ProductPage = ({ pageContext, data }) => {
+  const { product } = pageContext
+  const [gallery_images, setGallery] = useState([])
+  const [techList, setTechList] = useState([])
+
+  const productData = product?.data
+  const ctaDatas = data?.allPrismicProductCta.nodes
+  const ctaData = ctaDatas?.filter(
+    item => item?.prismicId === productData?.cta.id
+  )
+  const techInfos = data?.allPrismicProductTechInfo.nodes
+  const techInfo = techInfos?.filter(
+    item => item?.prismicId === productData?.tech_info.id
+  )[0]?.data
+
+  useEffect(() => {
+    setGallery(
+      productData?.gallery.map(item => ({
+        original: item.image.url,
+        thumbnail: item.image.url,
+        originalAlt: item.alt,
+        thumbnailAlt: item.alt,
+        description: item.caption,
+        originalTitle: item.caption,
+        thumbnailTitle: item.caption,
+      }))
+    )
+    setTechList(
+      techInfo &&
+        Object.keys(techInfo).map(key => ({
+          label: key.toUpperCase(),
+          value: key,
+        }))
+    )
+  }, [])
+
   return (
     <Layout type="secondary">
+      <Seo title={productData?.title} />
       <section className="top-gap"></section>
       <nav aria-label="breadcrumb" className="container">
         <ol className="breadcrumb">
@@ -59,8 +97,8 @@ const ProductPage = () => {
             </Link>
           </li>
           <li className="breadcrumb-item link">
-            <Link to="/" className="text-black">
-              LIGHTWALL 3440®
+            <Link to={`/products/${product?.uid}`} className="text-black">
+              {productData?.header}
             </Link>
           </li>
         </ol>
@@ -68,33 +106,31 @@ const ProductPage = () => {
       <section className="product-detail">
         <div className="container">
           <div className="text-center mb-5">
-            <img src={ProdImg} alt="product" className="w-100" />
+            <img
+              src={productData?.prod_img.url}
+              alt="product"
+              className="w-100"
+            />
           </div>
-          <h1 className="hero text-black">LIGHTWALL 3440®</h1>
-          <h5 className="text-black">Mortarless Glass Block System</h5>
-          <p className="txt-gray my-4">
-            EXTECH's SKYGARD 2500 is a glass skylight system that uses aluminum
-            mullions that can incorporate a variety of glass glazing options.
-            The system is can accommodate glass panels with greater than
-            9/16-inch thicknesses and optional custom silk-screen patterns and
-            glass coatings provided diffused daylighting while helping to
-            control solar heat gain.
-          </p>
+          <h1 className="hero text-black">{productData?.header}</h1>
+          <h5 className="text-black">{productData?.sub_header}</h5>
+          <p className="txt-gray my-4">{productData?.description}</p>
           <button className="btn-primary me-3">Order a sample</button>
           <button className="btn-second">Downloads</button>
         </div>
       </section>
       <section className="section-features container">
-        {icons.map((item, idx) => (
+        {productData?.icons.map((item, idx) => (
           <FeatureItem data={item} key={idx} />
         ))}
       </section>
       <section className="section-gallery product-page">
         <div className="container">
-          <h6 className="text-white">SKYGARD 2500</h6>
+          <h6 className="text-white">{productData?.name}</h6>
           <h1 className="text-white text-uppercase">Project gallery</h1>
+
           <ImageGallery
-            items={images}
+            items={gallery_images}
             showFullscreenButton={false}
             showPlayButton={false}
             autoPlay={true}
@@ -107,7 +143,7 @@ const ProductPage = () => {
             )}
           />
           <ImageGallery
-            items={images}
+            items={gallery_images}
             showFullscreenButton={false}
             showPlayButton={false}
             autoPlay={true}
@@ -117,24 +153,22 @@ const ProductPage = () => {
       <section className="product-spotlight container">
         <div className="row flex-row-reverse align-items-center">
           <div className="col-sm-6 text-center">
-            <img src={ProdModel} alt="product model" className="w-100" />
+            <img
+              src={productData?.spotlight_img.url}
+              alt="product spotlight"
+              className="w-100"
+            />
           </div>
           <div className="col-sm-6">
             <span className="kicker-text txt-gold">PRODUCT SPOTLIGHT</span>
-            <h1 className="pre-wrap text-black">LIGHTWALL 3440®</h1>
-            <p className="txt-brown my-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pharetra
-              netus ipsum velit vitae. Nec, nulla vulputate faucibus pharetra
-              nisl, enim. Ornare sit vestibulum a pulvinar viverra sed lacus.
-              Porta cursus orci, mi parturient. Quis eu pellentesque nunc,
-              aliquet diam sollicitudin pretium id.{" "}
-            </p>
+            <h1 className="pre-wrap text-black">{productData?.header}</h1>
+            <p className="txt-brown my-4">{productData?.spotlight_text}</p>
             <button className="btn-fifth">Get Your Free Quote</button>
           </div>
         </div>
       </section>
       <section className="model-section container">
-        <h6 className="kicker-text txt-gold">LIGHTWALL 3440®</h6>
+        <h6 className="kicker-text txt-gold">{productData?.header}</h6>
         <h1 className="pre-wrap text-black">PRODUCT VIDEOS</h1>
         <div className="threed-model">
           <div className="pos-center">
@@ -145,24 +179,32 @@ const ProductPage = () => {
         </div>
       </section>
       <SliderComponent type="project" />
-      <section className="section-cta other">
-        <div className="blue-layer"></div>
-        <div className="container position-relative">
-          <div className="row">
-            <div className="col-md-6">
-              <h2 className="text-white">{ctaData4.heading}</h2>
-              <p>{ctaData4.content}</p>
-            </div>
-            <div className="col-md-6 btn-group">
-              <Link className="btn-fourth" to="/">
-                {ctaData4.ctas[0]}
-              </Link>
+      {ctaData[0] && (
+        <section
+          className="section-cta other"
+          style={{ backgroundImage: ctaData[0]?.data.bg_image.url }}
+        >
+          <div className="blue-layer"></div>
+          <div className="container position-relative">
+            <div className="row">
+              <div className="col-md-6">
+                <h2 className="text-white">{ctaData[0]?.data.title}</h2>
+                <p>{ctaData[0]?.data.text}</p>
+              </div>
+              <div className="col-md-6 btn-group">
+                <Link
+                  className="btn-fourth"
+                  to={`/${ctaData[0]?.data.btn_link}`}
+                >
+                  {ctaData[0]?.data.btn_text}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <section className="model-section container">
-        <h6 className="kicker-text txt-gold">LIGHTWALL 3440®</h6>
+        <h6 className="kicker-text txt-gold">{productData?.header}</h6>
         <h1 className="pre-wrap text-black">3D Model</h1>
         <div className="threed-model">
           <div className="pos-center">
@@ -172,21 +214,98 @@ const ProductPage = () => {
             <p className="text-black">
               Click to show the 3D model of
               <br />
-              LIGHTWALL 3440®
+              {productData?.header}
             </p>
           </div>
         </div>
       </section>
-      <section className="tech-info container">
-        <h6 className="kicker-text txt-gold">LIGHTWALL 3440®</h6>
-        <h1 className="pre-wrap text-black">Technical Information</h1>
-        <TechTab />
-        <TechSelect />
-      </section>
-      <FAQSection questions={questions} />
-      <CTASection data={ctaData2} />
+      {techList?.length > 0 && Object.keys(techInfo).length > 0 && (
+        <section className="tech-info container">
+          <h6 className="kicker-text txt-gold">{productData?.header}</h6>
+          <h1 className="pre-wrap text-black">Technical Information</h1>
+          <TechTab list={techList} info={techInfo} />
+          <TechSelect list={techList} info={techInfo} />
+        </section>
+      )}
+      <FAQSection questions={productData?.faqs} />
+      <FooterCTA />
     </Layout>
   )
 }
 
 export default ProductPage
+
+export const query = graphql`
+  query ProductPage {
+    allPrismicProductCta {
+      nodes {
+        data {
+          title
+          text
+          btn_text
+          btn_link
+          bg_image {
+            url
+            gatsbyImageData
+          }
+        }
+        prismicId
+      }
+    }
+    allPrismicProductTechInfo {
+      nodes {
+        data {
+          bim {
+            title
+            description
+            require_login
+            icon {
+              url
+              gatsbyImageData
+            }
+            file {
+              url
+            }
+          }
+          cad {
+            title
+            description
+            require_login
+            icon {
+              url
+              gatsbyImageData
+            }
+            file {
+              url
+            }
+          }
+          literature {
+            title
+            description
+            require_login
+            icon {
+              url
+              gatsbyImageData
+            }
+            file {
+              url
+            }
+          }
+          spec {
+            title
+            description
+            require_login
+            icon {
+              url
+              gatsbyImageData
+            }
+            file {
+              url
+            }
+          }
+        }
+        prismicId
+      }
+    }
+  }
+`

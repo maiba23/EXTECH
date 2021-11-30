@@ -3,18 +3,7 @@ import { Link } from "gatsby"
 import Slider from "react-slick"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
-import {
-  Img1,
-  Img2,
-  Img3,
-  Img4,
-  Img5,
-  Img6,
-  Logo1,
-  Logo2,
-  Logo3,
-  Logo4,
-} from "../../utils/imgLoader"
+import { Img1, Img2, Img3, Img4, Img5, Img6 } from "../../utils/imgLoader"
 
 const solutions = [
   {
@@ -69,7 +58,6 @@ const projects = [
     imgSrc: Img6,
   },
 ]
-const logos = [Logo1, Logo2, Logo3, Logo4, Logo1]
 const blogs = [
   {
     header: "How Do Dynamic Wall Motion Systems Work?",
@@ -180,37 +168,6 @@ const SolutionComponent = ({ type }) => {
       },
     ],
   }
-  const trust_settings = {
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
   const project_settings = {
     speed: 500,
     slidesToShow: 3,
@@ -258,18 +215,6 @@ const SolutionComponent = ({ type }) => {
           <Slider ref={c => (slider.current = c)} {...solution_settings}>
             {solutions.map((item, index) => (
               <CustomSlide data={item} key={index} type={type} />
-            ))}
-          </Slider>
-        )}
-        {type === "trust" && (
-          <Slider ref={c => (slider.current = c)} {...trust_settings}>
-            {logos.map((item, index) => (
-              <img
-                src={item}
-                key={index}
-                className={type + "-img"}
-                alt="trust logos"
-              />
             ))}
           </Slider>
         )}

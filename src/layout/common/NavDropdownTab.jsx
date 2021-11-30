@@ -14,8 +14,15 @@ const NavDropdownTab = ({ data, type }) => {
             {type === "industry" && <h5 className="underline">Industries</h5>}
             <ul className="pt-2 mb-4">
               {data.map((item, idx) => (
-                <Link to={item.to} key={idx}>
-                  <li className="dropmenu-link">{item.name}</li>
+                <Link
+                  to={
+                    type === "industry"
+                      ? `/industry/${item.uid}`
+                      : `/${item.uid}`
+                  }
+                  key={idx}
+                >
+                  <li className="dropmenu-link">{item.data.name}</li>
                 </Link>
               ))}
             </ul>

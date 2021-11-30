@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png"
 import logoSec from "../assets/logo-secondary.png"
+import logoThird from "../assets/logo-third.png"
 import heroImg from "../assets/hero.jpg"
 
 import img1 from "../assets/img1.jpg"
@@ -9,17 +10,13 @@ import img4 from "../assets/img4.jpg"
 import img5 from "../assets/img5.jpg"
 import img6 from "../assets/img6.jpg"
 
-import logo1 from "../assets/HRVD.jpg"
-import logo2 from "../assets/GE.jpg"
-import logo3 from "../assets/DMN.jpg"
-import logo4 from "../assets/NYCT.jpg"
-
 import services from "../assets/services.jpg"
 import company from "../assets/company.jpg"
 
-import icon1 from "../assets/Architect.svg"
-import icon2 from "../assets/Contractor.svg"
-import icon3 from "../assets/Owner.svg"
+import architect from "../assets/architect.png"
+import contractor from "../assets/contractor.png"
+import manager from "../assets/manager.png"
+import guide from "../assets/guide.png"
 
 import arrowRight from "../assets/arrow-right.svg"
 import arrowRightGold from "../assets/arrow-right-gold.svg"
@@ -54,11 +51,6 @@ import caseInd from "../assets/case-ind.jpg"
 import galleryBack from "../assets/gallery-back.jpg"
 import contactBack from "../assets/contact-back.jpg"
 
-import blog1 from "../assets/blog1.jpg"
-import blog2 from "../assets/blog2.jpg"
-import blog3 from "../assets/blog3.jpg"
-import blog4 from "../assets/blog4.jpg"
-import blog5 from "../assets/blog5.jpg"
 import gallery1 from "../assets/gallery1.jpg"
 import gallery2 from "../assets/gallery2.jpg"
 import gallery3 from "../assets/gallery3.jpg"
@@ -122,6 +114,7 @@ import flatSheet from "../assets/flat_sheet.jpg"
 
 export const Logo = logo
 export const LogoSec = logoSec
+export const LogoThird = logoThird
 export const HeroImg = heroImg
 
 export const Img1 = img1
@@ -131,17 +124,13 @@ export const Img4 = img4
 export const Img5 = img5
 export const Img6 = img6
 
-export const Logo1 = logo1
-export const Logo2 = logo2
-export const Logo3 = logo3
-export const Logo4 = logo4
-
 export const Services = services
 export const Company = company
 
-export const Icon1 = icon1
-export const Icon2 = icon2
-export const Icon3 = icon3
+export const Architect = architect
+export const Contractor = contractor
+export const Manager = manager
+export const Guide = guide
 
 export const ArrowRight = arrowRight
 export const ArrowRightGold = arrowRightGold
@@ -176,11 +165,6 @@ export const CaseInd = caseInd
 export const GalleryBack = galleryBack
 export const ContactBack = contactBack
 
-export const Blog1 = blog1
-export const Blog2 = blog2
-export const Blog3 = blog3
-export const Blog4 = blog4
-export const Blog5 = blog5
 export const Gallery1 = gallery1
 export const Gallery2 = gallery2
 export const Gallery3 = gallery3

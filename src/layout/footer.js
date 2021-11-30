@@ -1,85 +1,120 @@
 import * as React from "react"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import SocialLinks from "./SocialLinks"
-import {
-  translucent_walls,
-  skylights,
-  canopies,
-  windows,
-  interiors,
-  specialty_exteriors,
-  exclusive_systems,
-  menus,
-  company,
-  services,
-} from "../utils/staticData"
 import NavSystemLink from "../components/shared/NavSystemLink"
+import { resources } from "../utils/staticData"
+import { Guide, LogoThird } from "../utils/imgLoader"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faMapMarkerAlt,
+  faPhone,
+  faEnvelope,
+  faFax,
+} from "@fortawesome/free-solid-svg-icons"
 
 const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query FooterQuery {
+      allPrismicProductType {
+        nodes {
+          data {
+            name
+          }
+          prismicId
+          uid
+        }
+      }
+    }
+  `)
+  const systems = data?.allPrismicProductType.nodes
   return (
     <footer>
       <div className="footer-navbar">
         <div className="container ">
           <div className="row">
             <div className="col-lg-4">
-              <h5 className="underline">EXTECH Systems</h5>
-              <div className="d-flex">
+              <h5 className="underline">Design Guide</h5>
+              <div className="d-flex align-items-center my-4">
                 <div className="col-6">
-                  <NavSystemLink
-                    subtitle="Translucent Walls"
-                    links={translucent_walls}
-                  />
-                  <NavSystemLink subtitle="Skylights" links={skylights} />
-                  <NavSystemLink subtitle="Canopies" links={canopies} />
+                  <p>Sign up and receive our free daylighting design guide.</p>
                 </div>
                 <div className="col-6">
-                  <NavSystemLink subtitle="Windows" links={windows} />
-                  <NavSystemLink subtitle="Interiors" links={interiors} />
-                  <NavSystemLink
-                    subtitle="Specialty Exteriors"
-                    links={specialty_exteriors}
-                  />
-                  <NavSystemLink
-                    subtitle="Exclusive Systems"
-                    links={exclusive_systems}
-                  />
+                  <img src={Guide} alt="guide img" className="w-100" />
                 </div>
               </div>
-            </div>
-            <div className="col-lg-4">
-              <h5 className="underline">Quick Links</h5>
-              <div className="d-flex">
-                <div className="col-6">
-                  <NavSystemLink subtitle="Menu" links={menus} />
-                  <NavSystemLink subtitle="Services" links={services} />
-                </div>
-                <div className="col-6">
-                  <NavSystemLink subtitle="Company" links={company} />
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <h5 className="underline">Sign-up for our Newsletter</h5>
-              <p className="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                ipsum ipsum.
-              </p>
-              <form className="my-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  placeholder="Name"
-                />
+              <div className="d-flex align-items-center">
                 <input
                   type="email"
                   className="form-control my-2"
                   id="email"
                   placeholder="Email"
                 />
-                <button type="submit" className="btn-third w-100">
-                  Confirm
+                <button type="submit" className="btn-submit">
+                  Submit
                 </button>
-              </form>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <h5 className="underline">Quick Links</h5>
+              <div className="d-flex">
+                <div className="col-6">
+                  <NavSystemLink subtitle="Systems" links={systems} />
+                </div>
+                <div className="col-6">
+                  <NavSystemLink subtitle="Resources" links={resources} />
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 contact-menu">
+              <div className="contact-menu__header">
+                <h5>Contact</h5>
+                <SocialLinks />
+              </div>
+              <Link to="/">
+                <img src={LogoThird} alt="logo third" />
+              </Link>
+              <ul className="contact-infos">
+                <li className="info-item">
+                  <p>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" />
+                  </p>
+                  <p className="ms-2">
+                    200 Bridge Street, Pittsburgh, PA 15223
+                  </p>
+                </li>
+                <li className="info-item">
+                  <p>
+                    <FontAwesomeIcon icon={faPhone} size="1x" />
+                  </p>
+                  <p className="ms-2">
+                    Toll Free:
+                    <a href="tel:+1-800-500-8083"> 800.500.8083 </a>
+                    <br />
+                    Local:
+                    <a href="tel:+1-412-781-0991"> 412.781.0991</a>
+                  </p>
+                </li>
+                <li className="info-item">
+                  <p>
+                    <FontAwesomeIcon icon={faFax} size="1x" />
+                  </p>
+                  <p className="ms-2">
+                    Toll Free Fax:
+                    <a href="tel:+1-800-500-8012"> 800.500.8012</a>
+                    <br />
+                    Local Fax:
+                    <a href="tel:+1-412-781-9303"> 412.781.9303</a>
+                  </p>
+                </li>
+                <li className="info-item">
+                  <p>
+                    <FontAwesomeIcon icon={faEnvelope} size="1x" />
+                  </p>
+                  <p className="ms-2">
+                    <a href="mailto:info@extechinc.com">info@extechinc.com</a>
+                  </p>
+                </li>
+              </ul>
               <SocialLinks />
             </div>
           </div>

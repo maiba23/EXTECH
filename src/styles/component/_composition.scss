@@ -28,6 +28,9 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 319px;
+  background-size: cover;
+  background-position: center;
+  @include sectionGap();
   @include mq("phone", max) {
     height: 155px;
   }
@@ -71,6 +74,41 @@ path:hover {
       width: 100%;
       margin-bottom: 8px;
       text-align: center;
+    }
+  }
+}
+
+.richtext-content {
+  white-space: pre-line;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  li,
+  p,
+  span {
+    color: black;
+  }
+  img {
+    width: 100%;
+  }
+  a {
+    color: $gold;
+    font-weight: bold;
+  }
+  p {
+    margin-bottom: 8px;
+  }
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+    li {
+      &::marker {
+        color: $gold;
+      }
     }
   }
 }

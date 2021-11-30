@@ -130,11 +130,11 @@ const ContactForm = () => {
         />
         <div className="select-group">
           <div className="mb-2">
-            <label className="form-label">I am a(n)</label>
+            <p className="form-label">I am a(n)</p>
             <Select options={jobs} value={job} onChange={v => handleJob(v)} />
           </div>
           <div className="mb-2">
-            <label className="form-label">State</label>
+            <p className="form-label">State</p>
             <Select
               options={states}
               value={us_state}
@@ -242,7 +242,6 @@ const ContactUs = () => {
     totalSizeInBytes,
     handleDragDropEvent,
     clearAllFiles,
-    createFormData,
     setFiles,
     removeFile,
   } = useFileUpload()
@@ -309,7 +308,12 @@ const ContactUs = () => {
                 <ContactForm />
               </div>
             </div>
-            <p className="link show-map" onClick={() => setShowMap(!showMap)}>
+            <p
+              className="link show-map"
+              onClick={() => setShowMap(!showMap)}
+              onKeyDown={() => setShowMap(!showMap)}
+              role="presentation"
+            >
               {showMap ? (
                 <span>
                   HIDE MAP
@@ -348,6 +352,8 @@ const ContactUs = () => {
               src={Close}
               alt="close"
               onClick={() => setShowOrder(false)}
+              onKeyDown={() => setShowOrder(false)}
+              role="presentation"
               className="close"
             />
           </div>
@@ -379,9 +385,9 @@ const ContactUs = () => {
             <h5 className="underline mt-5">Contact Information</h5>
             <form>
               <div className="mb-2">
-                <label className="form-label">
+                <p className="form-label">
                   Samples (You may select more than one)
-                </label>
+                </p>
                 <Select
                   options={sample_names}
                   value={sample}
@@ -441,7 +447,7 @@ const ContactUs = () => {
               />
               <div className="select-group">
                 <div className="mb-2">
-                  <label className="form-label">Country</label>
+                  <p className="form-label">Country</p>
                   <Select
                     options={countries}
                     value={country}
@@ -485,10 +491,12 @@ const ContactUs = () => {
         <Modal.Body>
           <div className="d-flex justify-content-end">
             <img
+              className="close"
               src={Close}
               alt="close"
               onClick={() => setShowQuote(false)}
-              className="close"
+              onKeyDown={() => setShowQuote(false)}
+              role="presentation"
             />
           </div>
           <h1>QUOTE REQUEST</h1>
@@ -529,7 +537,7 @@ const ContactUs = () => {
                 label="Phone"
               />
               <div className="mb-2">
-                <label className="form-label">I am(n)</label>
+                <p className="form-label">I am(n)</p>
                 <Select
                   options={jobs}
                   value={job}
@@ -565,7 +573,7 @@ const ContactUs = () => {
               />
               <div className="select-group">
                 <div className="mb-2">
-                  <label className="form-label">Country</label>
+                  <p className="form-label">Country</p>
                   <Select
                     options={countries}
                     value={country}
@@ -617,7 +625,7 @@ const ContactUs = () => {
                 placeholder="What should we know about this project?"
                 label="Project Notes"
               />
-              <label className="form-label">Project Files</label>
+              <p className="form-label">Project Files</p>
               <div
                 className="file-upload"
                 onDragEnter={handleDragDropEvent}
@@ -626,6 +634,7 @@ const ContactUs = () => {
                   handleDragDropEvent(e)
                   setFiles(e, "a")
                 }}
+                role="presentation"
               >
                 <p>Drop files here or</p>
                 <button

@@ -1,26 +1,33 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../layout"
 import SliderComponent from "../components/shared/SliderComponent"
-import CTASection from "../components/shared/CTASection"
+import FooterCTA from "../components/shared/FooterCTA"
 import Portfolio from "../components/shared/Portfolio"
 // import USAMap from "react-usa-map"
 import Select from "react-select"
-import { cases, ctaData2, systems, industries } from "../utils/staticData"
+import { systems, industries } from "../utils/staticData"
+import Seo from "../components/shared/seo"
 
-const Case = ({ data }) => {
+const Case = ({ casestudy, allSystems }) => {
+  const currentSystem = allSystems?.filter(
+    item => item?.prismicId === casestudy?.id
+  )
+
   return (
     <div className="row case">
       <div className="col-lg-4 col-md-5 case-image">
-        <img src={data.imgSrc} alt="case" />
+        <img src={casestudy?.data.header_image.url} alt="case" />
       </div>
       <div className="col-lg-8 col-md-7 case-about">
-        <h2 className="txt-gray">{data.name}</h2>
+        <h2 className="txt-gray">{casestudy?.data.name}</h2>
         <p className="txt-gray fw-bold">
-          System: <span className="txt-gold link">{data.system}</span>
+          System: <span className="txt-gold link">{currentSystem?.header}</span>
         </p>
-        <p className="txt-gray mt-3 mb-4">{data.desc}</p>
-        <Link to={data.to} className="btn-second text-center">
+        <p className="txt-gray mt-3 mb-4 case-text">
+          {casestudy?.data.header_text}
+        </p>
+        <Link to={casestudy?.uid} className="btn-second text-center">
           Read More
         </Link>
       </div>
@@ -28,7 +35,7 @@ const Case = ({ data }) => {
   )
 }
 
-const CaseStudies = () => {
+const CaseStudies = ({ data }) => {
   // const mapHandler = e => {
   //   console.log(e.target.dataset.name)
   // }
@@ -45,11 +52,13 @@ const CaseStudies = () => {
   const handleIndustry = value => {
     setIndustry(value)
   }
-  // console.log(system.value)
-  // console.log(industry.value)
+
+  const allCases = data?.allPrismicCaseStudy?.nodes
+  const allSystems = data?.allPrismicProduct.nodes
   return (
     <Layout type="secondary">
-      <section className="casestudy-hero hero-section">
+      <Seo title="Markets & Case Studies" />
+      <section className="hero-section">
         <div className="container">
           <h1 className="hero">
             <span className="typo-txt">Our Case Studies</span>
@@ -117,8 +126,8 @@ const CaseStudies = () => {
               />
             </div>
           </div>
-          {cases.map((item, idx) => (
-            <Case key={idx} data={item} />
+          {allCases?.map((item, idx) => (
+            <Case key={idx} casestudy={item} allSystems={allSystems} />
           ))}
           <div className="text-center mt-4">
             <button className="btn-primary">Load more</button>
@@ -127,9 +136,38 @@ const CaseStudies = () => {
       </section>
       <Portfolio type="services" />
       <SliderComponent type="blog" />
-      <CTASection data={ctaData2} />
+      <FooterCTA />
     </Layout>
   )
 }
 
 export default CaseStudies
+
+export const query = graphql`
+  query CaseStudiesQuery {
+    allPrismicCaseStudy {
+      nodes {
+        data {
+          header_image {
+            url
+            gatsbyImageData
+          }
+          system {
+            id
+          }
+          name
+          header_text
+        }
+        uid
+      }
+    }
+    allPrismicProduct {
+      nodes {
+        prismicId
+        data {
+          header
+        }
+      }
+    }
+  }
+`

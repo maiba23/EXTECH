@@ -10,8 +10,8 @@ const NavLink = ({ type, subtitle, links }) => {
           <ul className="mb-3">
             {links.map((item, idx) => (
               <li key={idx} className="menu-item">
-                <Link to={item.to} className="menu-link">
-                  {item.name}
+                <Link to={`/${item.uid}`} className="menu-link">
+                  {item.data.name}
                   {item.small && <small>{item.small}</small>}
                 </Link>
               </li>
@@ -24,7 +24,7 @@ const NavLink = ({ type, subtitle, links }) => {
           <ul className="mb-3">
             {links.map((item, idx) => (
               <li key={idx} className="footer-link">
-                <Link to={item.to}>{item.name}</Link>
+                <Link to={`/${item.uid}`}>{item.data.name}</Link>
               </li>
             ))}
           </ul>

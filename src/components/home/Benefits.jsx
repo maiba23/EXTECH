@@ -1,22 +1,21 @@
 import { Link } from "gatsby"
 import React, { useRef } from "react"
 import Slider from "react-slick"
-import { benefits } from "../../utils/staticData"
 
-const CustomSlide = ({ data }) => {
+const BenefitSlide = ({ data }) => {
   return (
     <div className="benefit-slide position-relative">
       <div className="gradient-blue"></div>
-      <img src={data.imgSrc} alt="benefit slide" />
+      <img src={data.image.url} alt="benefit slide" />
       <div className="fixed-content">
         <div className="container">
           <div className="row">
             <div className="col-md-6">
               <p className="kicker-text">{data.kicker}</p>
-              <h2 className="text-uppercase">{data.header}</h2>
+              <h2 className="text-uppercase">{data.title}</h2>
               <p className="my-4 pre-wrap">{data.content}</p>
-              <Link className="btn-third" to={data.to}>
-                {data.btnName}
+              <Link className="btn-third" to={data.btn_link}>
+                {data.btn_text}
               </Link>
             </div>
             <div className="col-md-6"></div>
@@ -27,7 +26,7 @@ const CustomSlide = ({ data }) => {
   )
 }
 
-const BenefitComponent = () => {
+const BenefitComponent = ({ benefits }) => {
   const slider = useRef()
   const settings = {
     dots: true,
@@ -41,7 +40,7 @@ const BenefitComponent = () => {
     <section className="section-benefits">
       <Slider ref={c => (slider.current = c)} {...settings}>
         {benefits.map((item, index) => (
-          <CustomSlide data={item} key={index} />
+          <BenefitSlide data={item} key={index} />
         ))}
       </Slider>
     </section>

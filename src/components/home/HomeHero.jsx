@@ -3,27 +3,23 @@ import React, { useRef } from "react"
 import Slider from "react-slick"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons"
-import { heros } from "../../utils/staticData"
 import { ArrowRight } from "../../utils/imgLoader"
 
 const CustomSlide = ({ data }) => {
   return (
     <div className="hero-slide position-relative">
-      <img src={data.imgSrc} alt="hero slide" className="hero-img" />
+      <img src={data.image.url} alt="hero slide" className="hero-img" />
       <div className="container">
         <div className="fixed-content">
           <h1 className="hero">
-            <span className="typo-txt">{data.header1}</span>
-          </h1>
-          <h1 className="hero">
-            <span className="typo-txt">{data.header2}</span>
+            <span className="typo-txt">{data.title}</span>
           </h1>
           <h3 className="my-4">
-            <span className="typo-txt">{data.content}</span>
+            <span className="typo-txt">{data.sub_title}</span>
           </h3>
-          <Link className="btn-goto" to={data.to}>
+          <Link className="btn-goto" to={data.btn_link}>
             <span>
-              {data.btnName}
+              {data.btn_text}
               &nbsp;&nbsp;
               <img src={ArrowRight} alt="arrow right" className="arrow-right" />
             </span>
@@ -34,7 +30,7 @@ const CustomSlide = ({ data }) => {
   )
 }
 
-const HeroComponent = () => {
+const HeroComponent = ({ heros }) => {
   const slider = useRef()
 
   const next = () => {

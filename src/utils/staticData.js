@@ -2,12 +2,6 @@ import {
   Case1,
   Case2,
   Case3,
-  Blog1,
-  Blog2,
-  Blog3,
-  Blog4,
-  Blog5,
-  HeroImg,
   Benefit,
   Sample1,
   Sample2,
@@ -34,6 +28,9 @@ import {
   USA,
   CaseHover,
   ServiceHover,
+  Architect,
+  Contractor,
+  Manager,
 } from "./imgLoader"
 import {
   faFacebook,
@@ -43,44 +40,6 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons"
 
-export const heros = [
-  {
-    num: "01",
-    header1: "Innovative ",
-    header2: "Daylighting Solutions",
-    content: "Harness the power of natural light",
-    btnName: "Explore our systems",
-    to: "/",
-    imgSrc: HeroImg,
-  },
-  {
-    num: "02",
-    header1: "Innovative ",
-    header2: "Daylighting Solutions",
-    content: "Harness the power of natural light",
-    btnName: "Explore our systems",
-    to: "/",
-    imgSrc: HeroImg,
-  },
-  {
-    num: "03",
-    header1: "Innovative ",
-    header2: "Daylighting Solutions",
-    content: "Harness the power of natural light",
-    btnName: "Explore our systems",
-    to: "/",
-    imgSrc: HeroImg,
-  },
-  {
-    num: "04",
-    header1: "Innovative ",
-    header2: "Daylighting Solutions",
-    content: "Harness the power of natural light",
-    btnName: "Explore our systems",
-    to: "/",
-    imgSrc: HeroImg,
-  },
-]
 export const benefits = [
   {
     kicker: "WHY DAYLIGHTING THE BEST SOLUTION",
@@ -123,158 +82,143 @@ The power of daylighting goes beyond energy savings - it delivers positive effec
     imgSrc: Benefit,
   },
 ]
+
 export const samples = [Sample1, Sample2, Sample3]
 
-export const translucent_walls = [
-  {
-    name: "Lightwall 3440",
-    small: "Interlocking Wall System",
-    to: "/lightwall-3440-polycarbonate-wall-panels",
-  },
-  {
-    name: "Lightwall 3000",
-    small: "Curtain Wall System",
-    to: "/lightwall-3000-curtain-wall",
-  },
-  {
-    name: "Lightwall 3100LS",
-    small: "Long Spanning Wall System",
-    to: "/lightwall-3100ls-translucent-wall-panels",
-  },
-]
-export const skylights = [
-  {
-    name: "Skygard 2500",
-    small: "Glass Skylight System",
-    to: "/product-page",
-  },
-  {
-    name: "Skygard 3300",
-    small: "Surface Mounted Skylight",
-    to: "/skygard-3300-commercial-skylights",
-  },
-  {
-    name: "Skygard 3700",
-    to: "/skygard-3700-industrial-skylights",
-    small: "Self-Spanning Skylight",
-  },
-]
-export const canopies = [
-  {
-    name: "Skyshade 2500",
-    small: "Glass Canopy",
-    to: "/skyshade-2500-glass-canopy",
-  },
-  {
-    name: "Skyshade 3100",
-    small: "Standing Seam Canopy",
-    to: "/skyshade-3100-commercial-canopies",
-  },
-  {
-    name: "Skyshade 3300",
-    small: "Surface Mounted Canopy",
-    to: "/skyshade-3300-industrial-canopies",
-  },
-  {
-    name: "Skyshade 3700",
-    small: "Aluminum Framed Canopy",
-    to: "/skyshade-3700-polycarbonate-canopies",
-  },
-  {
-    name: "Skyshade 8000",
-    small: "Long-Span High Load Canopy",
-    to: "/skyshade-8000",
-  },
-  {
-    name: "Sunglaze",
-    small: "Sleek Canopy System",
-    to: "/sunglaze-sleek-canopy",
-  },
-]
-export const windows = [
-  {
-    name: "Techvent 5300",
-    small: "Top-Hinged Industrial Window",
-    to: "/techvent-5300-industrial-polycarbonate-windows",
-  },
-]
-export const interiors = [
-  {
-    name: "Cleanwall",
-    small: "Porcelain Panel System",
-    to: "/cleanwall-porcelain-wall-panels",
-  },
-  {
-    name: "Flexi-Panel",
-    small: "Translucent Ceiling Panel System",
-    to: "/flexi-panel-translucent-ceiling-panels",
-  },
-]
-export const specialty_exteriors = [
-  {
-    name: "Matrixwall",
-    small: "Mortarless Glass Block System",
-    to: "/matrixwall-glass-block-walls",
-  },
-  {
-    name: "Gridlock",
-    small: "Snap-In Glass Block System",
-    to: "/gridlock-mortarless-glass-block",
-  },
-]
-export const exclusive_systems = [
-  {
-    name: "Kineticwall",
-    small: "Moving Dynamic Façade",
-    to: "/kinetic-wall-dynamic-facade",
-  },
-  { name: "Geolam", small: "Hybrid Aluminum/WPC", to: "/geolam" },
-]
 export const menus = [
-  { name: "Home", to: "/" },
-  { name: "Case Studies", to: "/case-studies" },
-  { name: "Resources", to: "/resources" },
+  { data: { name: "Home" }, uid: "" },
+  { data: { name: "Case Studies" }, uid: "case-studies" },
+  { data: { name: "Resources" }, uid: "resources" },
 ]
 export const services = [
   {
-    name: "Custom Design",
-    to: "/services/custom-wall-design",
-    hover: ServiceHover,
+    data: {
+      name: "Custom Design",
+      hover: ServiceHover,
+    },
+    uid: "services/custom-wall-design",
   },
   {
-    name: "Daylighting Analysis",
-    to: "/services/daylighting-simulation",
-    hover: CaseHover,
+    data: {
+      name: "Daylighting Analysis",
+      hover: CaseHover,
+    },
+    uid: "services/daylighting-simulation",
   },
   {
-    name: "Engineering",
-    to: "/services/industrial-window-design",
-    hover: ServiceHover,
+    data: {
+      name: "Engineering",
+      hover: ServiceHover,
+    },
+    uid: "services/industrial-window-design",
   },
-  { name: "Fabrication", to: "/services/window-fabrication", hover: CaseHover },
   {
-    name: "Installation",
-    to: "/services/commercial-window-installation",
-    hover: ServiceHover,
+    data: {
+      name: "Fabrication",
+      hover: CaseHover,
+    },
+    uid: "services/window-fabrication",
+  },
+  {
+    data: {
+      name: "Installation",
+      hover: ServiceHover,
+    },
+    uid: "services/commercial-window-installation",
   },
 ]
 export const company = [
-  { name: "About", to: "/about-us" },
-  { name: "News & Blog", to: "/news-blog" },
-  { name: "History & Mission", to: "/history-mission" },
-  { name: "Gallery", to: "/project-gallery" },
+  {
+    data: {
+      name: "About",
+    },
+    uid: "our-team",
+  },
+  { data: { name: "News & Blog" }, uid: "news-blog" },
+  { data: { name: "History & Mission" }, uid: "history-mission" },
+  { data: { name: "Gallery" }, uid: "project-gallery" },
 ]
 export const industry = [
-  { name: "Education", to: "/", hover: ServiceHover },
-  { name: "Aviation", to: "/", hover: CaseHover },
-  { name: "Transit", to: "/", hover: ServiceHover },
-  { name: "Industrial", to: "/", hover: CaseHover },
-  { name: "Military", to: "/", hover: ServiceHover },
-  { name: "Recreation", to: "/", hover: CaseHover },
+  {
+    data: {
+      name: "Education",
+      hover: ServiceHover,
+    },
+    uid: "about-us",
+  },
+  {
+    data: {
+      name: "Aviation",
+      hover: CaseHover,
+    },
+    uid: "about-us",
+  },
+  {
+    data: {
+      name: "Transit",
+      hover: ServiceHover,
+    },
+    uid: "about-us",
+  },
+  {
+    data: {
+      name: "Industrial",
+      hover: CaseHover,
+    },
+    uid: "about-us",
+  },
+  {
+    data: {
+      name: "Military",
+      hover: ServiceHover,
+    },
+    uid: "about-us",
+  },
+  {
+    data: {
+      name: "Recreation",
+      hover: CaseHover,
+    },
+    uid: "about-us",
+  },
 ]
 export const resources = [
-  { name: "Product Downloads", to: "/" },
-  { name: "Articles", to: "/" },
+  {
+    data: {
+      name: "About",
+    },
+    uid: "our-team",
+  },
+  {
+    data: {
+      name: "News & Blog",
+    },
+    uid: "news-blog",
+  },
+  {
+    data: {
+      name: "Case Studies",
+    },
+    uid: "case-studies",
+  },
+  {
+    data: {
+      name: "Contact",
+    },
+    uid: "contact-us",
+  },
+  {
+    data: {
+      name: "Privacy Policy",
+    },
+    uid: "privacy-policy",
+  },
+  {
+    data: {
+      name: "Terms & Conditions",
+    },
+    uid: "terms-conditions",
+  },
 ]
 
 export const cases = [
@@ -304,41 +248,6 @@ export const cases = [
   },
 ]
 
-export const ctaData = {
-  type: "",
-  heading:
-    "EXTECH is committed to collaboration, innovation, and exceptional engineering.",
-  ctas: ["Order a sample", "Quote request"],
-}
-export const ctaData1 = {
-  type: "other",
-  heading:
-    "Would you like to implement a similar progect? Or you have any questions?",
-  content:
-    "Ask our experts, or leave a request and we’ll call you back within one buisness day.",
-  ctas: ["Request a Callback", "Ask a Question"],
-}
-export const ctaData2 = {
-  type: "other",
-  heading:
-    "EXTECH is committed to collaboration, innovation, and exceptional engineering.",
-  ctas: ["Order a sample", "Quote request"],
-}
-export const ctaData3 = {
-  type: "other",
-  heading:
-    "Would you like to perform a daylighting analysis of your building? Or you have any questions?",
-  content:
-    "Ask our experts, or leave a request and we’ll call you back within one buisness day.",
-  ctas: ["Request a Callback", "Ask a Question"],
-}
-export const ctaData4 = {
-  type: "other",
-  heading: "Design Services",
-  content:
-    "Extech collaborates with architects, specifiers and installers to design a daylighting system for your unique applications.",
-  ctas: ["Contact Us"],
-}
 export const systems = [
   { value: "all_systems", label: "All Systems" },
   { value: "translucent_walls", label: "Translucent Walls" },
@@ -378,371 +287,6 @@ export const socials = [
   },
   {
     icon: faYoutube,
-    to: "/",
-  },
-]
-
-export const blogs = [
-  {
-    kicker: "architecture",
-    title:
-      "KINETICWALL & Children’s Museum Win GBA Award For LEED and Sustainability",
-    content:
-      "We are delighted to announce that EXTECH’s KINETICWALL is being recognized in Green Building Alliance’s GBA 25th Anniversary Award given to the Children’s Museum of Pittsburgh",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog1,
-    kicker: "News",
-    title:
-      "EXTECH To Attend NBAA BACE Conference Oct. 16-18 In Orlando Florida",
-    content:
-      "EXTECH is excited to announce that we will be exhibiting at the 2018 NBAA BACE Convention!The 2018 NBAA Business Aviation Convention & Exhibition (NBAA-BACE) is the world’s largest and most important business aviation event.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog5,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog2,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Thermal Performance and Energy Savings with Polycarbonate Glazing Systems",
-    content:
-      "Q: Do Cellular Polycarbonate Glazing Systems Offer Thermal Performance and Energy Savings?One of the most prevalent complaints building owners and facility managers receive is",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog3,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
-    to: "/",
-  },
-  {
-    img: Blog4,
-    kicker: "architecture",
-    title:
-      "TECH Talks – Understanding How Cellular Polycarbonate Glazing Contributes To Daylighting",
-    content:
-      "Q: How Does Cellular Polycarbonate Glazing Contribute to Daylighting?Access to daylighting provides recognized benefits to health and wellness, accuracy and productivity.",
-    author: "Jim leslie",
-    date: "25 dec 2020",
     to: "/",
   },
 ]
@@ -1432,3 +976,18 @@ export const selectData = {
     },
   ],
 }
+
+export const professionals = [
+  {
+    image: Architect,
+    name: "Architects",
+  },
+  {
+    image: Contractor,
+    name: "General Contractors",
+  },
+  {
+    image: Manager,
+    name: "Facility Managers",
+  },
+]

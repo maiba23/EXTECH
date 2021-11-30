@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import "react-tabs/style/react-tabs.css"
-import { selectData, selectList } from "../../utils/staticData"
+// import { selectData, selectList } from "../../utils/staticData"
 
 const DownloadItem = ({ data }) => {
   return (
@@ -9,28 +9,35 @@ const DownloadItem = ({ data }) => {
       {data.map((item, idx) => (
         <div className="download" key={idx}>
           <div className="download-info">
-            <p className="file-name">{item.name}</p>
-            <p className="file-content">{item.content}</p>
+            <p className="file-name">{item.title}</p>
+            <p className="file-content">{item.description}</p>
           </div>
-          <button className="btn-second">Download</button>
+          <a
+            className="btn-second"
+            href={item.file.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Download
+          </a>
         </div>
       ))}
     </>
   )
 }
-const TechTab = () => {
+const TechTab = ({ list, info }) => {
   const [tabIndex, setTabIndex] = useState(0)
   return (
     <div className="tech-info__tab">
       <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
         <TabList>
-          {selectList.map((item, idx) => (
+          {list.map((item, idx) => (
             <Tab key={idx}>{item.label}</Tab>
           ))}
         </TabList>
-        {Object.keys(selectData).map((key, index) => (
+        {Object.keys(info).map((key, index) => (
           <TabPanel key={index}>
-            <DownloadItem data={selectData[key]} />
+            <DownloadItem data={info[key]} />
           </TabPanel>
         ))}
       </Tabs>

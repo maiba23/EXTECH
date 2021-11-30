@@ -10,7 +10,7 @@ const FAQSection = ({ questions }) => {
         <h6 className="kicker-text txt-gold">LIGHTWALL 3440®</h6>
         <h1 className="faq-head">Frequency Asked Questions</h1>
         <div className="faq-body">
-          {questions.map(({ question, answer }, idx) => (
+          {questions?.map(({ question, answer }, idx) => (
             <div
               className={idx === activeIdx ? "faq-item active" : "faq-item"}
               key={idx}

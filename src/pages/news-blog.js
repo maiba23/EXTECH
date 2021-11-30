@@ -1,71 +1,24 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../layout"
 import ReactPaginate from "react-paginate"
-import CTASection from "../components/shared/CTASection"
+import FooterCTA from "../components/shared/FooterCTA"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import Sidebar from "../components/shared/Sidebar"
-import { blogs, ctaData2 } from "../utils/staticData"
+import Seo from "../components/shared/seo"
+import BlogItem from "../components/news-blog/BlogItem"
 
-const Blogs = ({ data }) => {
-  return (
-    <>
-      {data.img ? (
-        <article>
-          <div className="row">
-            <div className="col-lg-5">
-              <img src={data.img} alt="blog item" className="post-image" />
-            </div>
-            <div className="col-lg-7">
-              <div className="blog-item">
-                <header>
-                  <p className="link txt-gold">{data.kicker}</p>
-                  <Link to={data.to}>
-                    <h5 className="text-black">{data.title}</h5>
-                  </Link>
-                </header>
-                <p className="post-content">{data.content}</p>
-                <footer>
-                  <span className="post-author txt-blue link">
-                    {data.author}
-                  </span>
-                  <span className="post-date txt-light-gray link">
-                    {data.date}
-                  </span>
-                </footer>
-              </div>
-            </div>
-          </div>
-        </article>
-      ) : (
-        <article>
-          <div className="blog-item">
-            <header>
-              <p className="link txt-gold">{data.kicker}</p>
-              <Link to={data.to}>
-                <h5 className="text-black">{data.title}</h5>
-              </Link>
-            </header>
-            <p className="text-black">{data.content}</p>
-            <footer>
-              <span className="post-author txt-blue link">{data.author}</span>
-              <span className="post-date txt-light-gray link">{data.date}</span>
-            </footer>
-          </div>
-        </article>
-      )}
-    </>
-  )
-}
-
-const NewsBlog = () => {
+const NewsBlog = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(0)
+
+  const allBlogs = data?.allPrismicBlogPost.nodes
+  const allCategories = data?.allPrismicBlogCategory.nodes
 
   const PER_PAGE = 3
   const offset = currentPage * PER_PAGE
-  const currentPageData = blogs.slice(offset, offset + PER_PAGE)
-  const pageCount = Math.ceil(blogs.length / PER_PAGE)
+  const currentPageData = allBlogs?.slice(offset, offset + PER_PAGE)
+  const pageCount = Math.ceil(allBlogs?.length / PER_PAGE)
 
   const handlePageClick = ({ selected: selectedPage }) => {
     setCurrentPage(selectedPage)
@@ -73,7 +26,8 @@ const NewsBlog = () => {
 
   return (
     <Layout type="secondary">
-      <section className="hero-section news-hero">
+      <Seo title="News & Blog " />
+      <section className="hero-section">
         <div className="container">
           <h1 className="hero">
             <span className="typo-txt">Latest News & Blog Posts</span>
@@ -88,7 +42,7 @@ const NewsBlog = () => {
             </Link>
           </li>
           <li className="breadcrumb-item link">
-            <Link to="/case-studies" className="text-black">
+            <Link to="/news-blog" className="text-black">
               OUR BLOG & LATEST NEWS
             </Link>
           </li>
@@ -98,8 +52,8 @@ const NewsBlog = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-9 col-md-8">
-              {currentPageData.map((item, idx) => (
-                <Blogs data={item} key={idx} />
+              {currentPageData?.map((item, idx) => (
+                <BlogItem blog={item} key={idx} categoryData={allCategories} />
               ))}
               <ReactPaginate
                 previousLabel={
@@ -121,9 +75,49 @@ const NewsBlog = () => {
           </div>
         </div>
       </section>
-      <CTASection data={ctaData2} />
+      <FooterCTA />
     </Layout>
   )
 }
 
 export default NewsBlog
+
+export const query = graphql`
+  query BlogsQuery {
+    allPrismicBlogPost {
+      nodes {
+        data {
+          meta_title
+          header
+          header_text
+          category {
+            id
+          }
+          thumbnail {
+            url
+            gatsbyImageData
+          }
+          main_image {
+            url
+            gatsbyImageData
+          }
+          date
+          author_name
+          author_image {
+            gatsbyImageData
+            url
+          }
+        }
+        uid
+      }
+    }
+    allPrismicBlogCategory {
+      nodes {
+        prismicId
+        data {
+          name
+        }
+      }
+    }
+  }
+`

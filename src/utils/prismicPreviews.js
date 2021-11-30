@@ -7,9 +7,5 @@ export const repositoryConfigs = [
   {
     repositoryName: prismicRepo,
     linkResolver,
-    //  componentResolver: componentResolverFromMap({
-    //    post: Post,
-    //    bloghome: Posts,
-    //  }),
   },
 ]
